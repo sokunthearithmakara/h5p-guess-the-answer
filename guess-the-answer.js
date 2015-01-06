@@ -1,7 +1,7 @@
 var H5P = H5P || {};
 
 /**
- * Counter module
+ * Guess the answer module
  * @external {jQuery} $ H5P.jQuery
  */
 H5P.GuessTheAnswer = (function ($) {
