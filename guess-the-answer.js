@@ -101,7 +101,6 @@ H5P.GuessTheAnswer = (function ($) {
     $img.load(function () {
       self.imageNaturalWidth = this.naturalWidth;
       self.imageNaturalHeight = this.naturalHeight;
-      console.log("img loaded");
       self.resize();
     });
     self.$img = $img;
