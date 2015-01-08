@@ -79,6 +79,7 @@ H5P.GuessTheAnswer = (function ($) {
     if (self.params.solutionImage === null) {
       return;
     }
+    var $img = null;
 
     var $imageHolder = $('<div/>', {
       'class': IMAGE_CONTAINER
@@ -90,9 +91,9 @@ H5P.GuessTheAnswer = (function ($) {
         imageWidth = $container.width();
       }
 
-      var imageHeight = (imageWidth/self.params.solutionImage.width)*self.params.solutionImage.height;
+      var imageHeight = (imageWidth / self.params.solutionImage.width) * self.params.solutionImage.height;
 
-      var $img = $('<img/>', {
+      $img = $('<img/>', {
         'class': IMAGE,
         src: H5P.getPath(self.params.solutionImage.path, self.id)
       }).css({width: imageWidth, height: imageHeight}).appendTo($imageHolder);
@@ -133,16 +134,15 @@ H5P.GuessTheAnswer = (function ($) {
     //Rescale image if defined.
     if (this.$img !== undefined) {
       //Enlarge window dimensions
-      if(this.$inner.width() > this.imageNaturalWidth) {
+      if (this.$inner.width() > this.imageNaturalWidth) {
         this.$img.width(this.imageNaturalWidth);
         solutionWidth = this.imageNaturalWidth;
         this.$img.height(this.imageNaturalHeight);
-      }
-      //Reduce window dimensions
-      else {
+      } else {
+        //Reduce window dimensions
         this.$img.width(this.$inner.width());
         solutionWidth = this.$inner.width();
-        this.$img.height(this.imageNaturalHeight/(this.imageNaturalWidth/this.$inner.width()));
+        this.$img.height(this.imageNaturalHeight / (this.imageNaturalWidth / this.$inner.width()));
       }
     }
 
@@ -157,9 +157,9 @@ H5P.GuessTheAnswer = (function ($) {
     if (!this.$solutionContainer.hasClass(SHOWING_SOLUTION)) {
       this.$solutionContainer.html(this.params.solutionText);
       maxHeight = maxHeight < self.$solutionContainer.height() ? self.$solutionContainer.height() : maxHeight;
-      self.$solutionContainer.html(self.params.solutionLabel).css('height', maxHeight+'px');
+      self.$solutionContainer.html(self.params.solutionLabel).css('height', maxHeight + 'px');
     }
   };
 
-    return C;
+  return C;
 })(H5P.jQuery);
