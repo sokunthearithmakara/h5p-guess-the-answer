@@ -40,18 +40,18 @@ H5P.GuessTheAnswer = (function ($) {
    * @param {jQuery} $container The container which will be appended to.
    */
   C.prototype.attach = function ($container) {
-    var $inner = $container.addClass(MAIN_CONTAINER);
+    this.$inner = $container.addClass(MAIN_CONTAINER)
+      .html('<div></div>')
+      .children();
 
     //Attach task description, if provided.
-    this.addTaskDescriptionTo($inner);
+    this.addTaskDescriptionTo(this.$inner);
 
     //Attach image, if provided.
-    this.addImageTo($inner);
+    this.addImageTo(this.$inner);
 
     //Attach solution container.
-    this.addSolutionContainerTo($inner);
-
-    this.$inner = $inner;
+    this.addSolutionContainerTo(this.$inner);
   };
 
   /**
@@ -96,13 +96,14 @@ H5P.GuessTheAnswer = (function ($) {
         'class': IMAGE,
         src: H5P.getPath(self.params.solutionImage.path, self.id)
       }).css({width: imageWidth, height: imageHeight}).appendTo($imageHolder);
+
+      $img.load(function () {
+        self.imageNaturalWidth = this.naturalWidth;
+        self.imageNaturalHeight = this.naturalHeight;
+        self.resize();
+      });
     }
 
-    $img.load(function () {
-      self.imageNaturalWidth = this.naturalWidth;
-      self.imageNaturalHeight = this.naturalHeight;
-      self.resize();
-    });
     self.$img = $img;
   };
 
@@ -157,7 +158,7 @@ H5P.GuessTheAnswer = (function ($) {
       this.$solutionContainer.html(this.params.solutionText);
       maxHeight = maxHeight < self.$solutionContainer.height() ? self.$solutionContainer.height() : maxHeight;
       self.$solutionContainer.html(self.params.solutionLabel).css('height', maxHeight+'px');
-    };
+    }
   };
 
     return C;

@@ -18,8 +18,9 @@
 .h5p-guess-answer-solution-container {
   cursor: pointer;
   margin: auto;
-  background-color: #818181;
+  background-color: #545454;
   color: #FFF;
+  padding: 0.5em 0em;
 
   display: flex;
   justify-content:center;
