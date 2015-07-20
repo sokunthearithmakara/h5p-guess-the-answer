@@ -40,6 +40,7 @@ H5P.GuessTheAnswer = (function ($) {
    * @param {jQuery} $container The container which will be appended to.
    */
   C.prototype.attach = function ($container) {
+    this.setActivityStarted();
     this.$inner = $container.addClass(MAIN_CONTAINER)
       .html('<div></div>')
       .children();

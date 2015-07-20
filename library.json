@@ -5,6 +5,10 @@
   "minorVersion": 0,
   "patchVersion": 0,
   "runnable": 1,
+  "coreApi": {
+    "majorVersion": 1,
+    "minorVersion": 6
+  },
   "author": "Joubel AS",
   "license": "MIT",
   "machineName": "H5P.GuessTheAnswer",
