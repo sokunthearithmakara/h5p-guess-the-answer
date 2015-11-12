@@ -21,5 +21,12 @@
     {
       "path": "guess-the-answer.js"
     }
+  ],
+  "preloadedDependencies": [
+    {
+      "machineName": "FontAwesome",
+      "majorVersion": 4,
+      "minorVersion": 3
+    }
   ]
 }
