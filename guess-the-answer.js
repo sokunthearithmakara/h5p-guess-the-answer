@@ -158,7 +158,7 @@ H5P.GuessTheAnswer = (function ($) {
     if (!this.$solutionContainer.hasClass(SHOWING_SOLUTION)) {
       this.$solutionContainer.html(this.params.solutionText);
       maxHeight = maxHeight < self.$solutionContainer.height() ? self.$solutionContainer.height() : maxHeight;
-      self.$solutionContainer.html(self.params.solutionLabel).css(minHeight, maxHeight + 'px');
+      self.$solutionContainer.html(self.params.solutionLabel).css({minHeight: maxHeight + 'px'});
     }
   };
 
