@@ -5,15 +5,6 @@ var H5P = H5P || {};
  * @external {jQuery} $ H5P.jQuery
  */
 H5P.GuessTheAnswer = (function ($) {
-  // CSS Classes:
-  var MAIN_CONTAINER = 'h5p-guess-answer';
-  var TITLE_CONTAINER = 'h5p-guess-answer-title';
-  var IMAGE_CONTAINER = 'h5p-guess-answer-image-container';
-  var SOLUTION_CONTAINER = 'h5p-guess-answer-solution-container';
-
-  // CSS Subclasses:
-  var IMAGE = 'h5p-guess-answer-image';
-  var SHOWING_SOLUTION = 'h5p-guess-answer-showing-solution';
 
   /**
    * Initialize module.
@@ -41,7 +32,7 @@ H5P.GuessTheAnswer = (function ($) {
    */
   C.prototype.attach = function ($container) {
     this.setActivityStarted();
-    this.$inner = $container.addClass(MAIN_CONTAINER)
+    this.$inner = $container.addClass('h5p-guess-answer')
       .html('<div></div>')
       .children();
 
@@ -63,7 +54,7 @@ H5P.GuessTheAnswer = (function ($) {
   C.prototype.addTaskDescriptionTo = function ($container) {
     if (this.params.taskDescription) {
       $('<div/>', {
-        'class': TITLE_CONTAINER,
+        'class': 'h5p-guess-answer-title',
         html: this.params.taskDescription
       }).appendTo($container);
     }
@@ -79,9 +70,9 @@ H5P.GuessTheAnswer = (function ($) {
 
     if (self.params.solutionImage && self.params.solutionImage.path) {
       var $imageHolder = $('<div/>', {
-        'class': IMAGE_CONTAINER
+        'class': 'h5p-guess-answer-image-container'
       }).append($('<img/>', {
-        'class': IMAGE,
+        'class': 'h5p-guess-answer-image',
         src: H5P.getPath(self.params.solutionImage.path, self.id),
         load: function () {
           self.trigger('resize');
@@ -101,10 +92,10 @@ H5P.GuessTheAnswer = (function ($) {
     var self = this;
 
     self.$solutionContainer = $('<div/>', {
-      'class': SOLUTION_CONTAINER,
+      'class': 'h5p-guess-answer-solution-container',
       html: this.params.solutionLabel
     }).click(function () {
-      $(this).addClass(SHOWING_SOLUTION).html(self.params.solutionText);
+      $(this).addClass('h5p-guess-answer-showing-solution').html(self.params.solutionText);
     }).appendTo($container);
   };
 
