@@ -9,6 +9,7 @@
     "majorVersion": 1,
     "minorVersion": 6
   },
+  "embedTypes": ["iframe"],
   "author": "Joubel AS",
   "license": "MIT",
   "machineName": "H5P.GuessTheAnswer",

@@ -77,36 +77,19 @@ H5P.GuessTheAnswer = (function ($) {
   C.prototype.addImageTo = function ($container) {
     var self = this;
 
-    if (self.params.solutionImage === null) {
-      return;
-    }
-    var $img = null;
-
-    var $imageHolder = $('<div/>', {
-      'class': IMAGE_CONTAINER
-    }).appendTo($container);
-
     if (self.params.solutionImage && self.params.solutionImage.path) {
-      var imageWidth = self.params.solutionImage.width;
-      if ($container.width() < self.params.solutionImage.width) {
-        imageWidth = $container.width();
-      }
-
-      var imageHeight = (imageWidth / self.params.solutionImage.width) * self.params.solutionImage.height;
-
-      $img = $('<img/>', {
+      var $imageHolder = $('<div/>', {
+        'class': IMAGE_CONTAINER
+      }).append($('<img/>', {
         'class': IMAGE,
-        src: H5P.getPath(self.params.solutionImage.path, self.id)
-      }).css({width: imageWidth, height: imageHeight}).appendTo($imageHolder);
+        src: H5P.getPath(self.params.solutionImage.path, self.id),
+        load: function () {
+          self.trigger('resize');
+        }
+      }));
 
-      $img.load(function () {
-        self.imageNaturalWidth = this.naturalWidth;
-        self.imageNaturalHeight = this.naturalHeight;
-        self.resize();
-      });
+      $imageHolder.appendTo($container);
     }
-
-    self.$img = $img;
   };
 
   /**
@@ -123,43 +106,6 @@ H5P.GuessTheAnswer = (function ($) {
     }).click(function () {
       $(this).addClass(SHOWING_SOLUTION).html(self.params.solutionText);
     }).appendTo($container);
-  };
-
-  /**
-   * Resize function for responsiveness.
-   */
-  C.prototype.resize = function () {
-    var self = this;
-    var solutionWidth = this.$inner.width();
-
-    //Rescale image if defined.
-    if (this.$img !== undefined) {
-      //Enlarge window dimensions
-      if (this.$inner.width() > this.imageNaturalWidth) {
-        this.$img.width(this.imageNaturalWidth);
-        solutionWidth = this.imageNaturalWidth;
-        this.$img.height(this.imageNaturalHeight);
-      } else {
-        //Reduce window dimensions
-        this.$img.width(this.$inner.width());
-        solutionWidth = this.$inner.width();
-        this.$img.height(this.imageNaturalHeight / (this.imageNaturalWidth / this.$inner.width()));
-      }
-    }
-
-    //Set width for solution container.
-    this.$solutionContainer.width(solutionWidth);
-
-    //Resize height to enclose all text tightly.
-    this.$solutionContainer.css('height', 'initial');
-    var maxHeight = self.$solutionContainer.height();
-
-    //Check if additional height is required for solution text.
-    if (!this.$solutionContainer.hasClass(SHOWING_SOLUTION)) {
-      this.$solutionContainer.html(this.params.solutionText);
-      maxHeight = maxHeight < self.$solutionContainer.height() ? self.$solutionContainer.height() : maxHeight;
-      self.$solutionContainer.html(self.params.solutionLabel).css({minHeight: maxHeight + 'px'});
-    }
   };
 
   return C;
