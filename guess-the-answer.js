@@ -96,6 +96,7 @@ H5P.GuessTheAnswer = (function ($) {
       html: this.params.solutionLabel
     }).click(function () {
       $(this).addClass('h5p-guess-answer-showing-solution').html(self.params.solutionText);
+      self.trigger('resize');
     }).appendTo($container);
   };
 

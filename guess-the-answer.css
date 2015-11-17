@@ -55,6 +55,7 @@
 
 .h5p-guess-answer-solution-container.h5p-guess-answer-showing-solution {
   cursor: auto;
+  padding: 0.5em 0;
   background-color: transparent;
   color: #1a73d9;
   font-weight: bold;
