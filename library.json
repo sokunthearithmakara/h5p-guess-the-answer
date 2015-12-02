@@ -9,6 +9,7 @@
     "majorVersion": 1,
     "minorVersion": 6
   },
+  "embedTypes": ["iframe"],
   "author": "Joubel AS",
   "license": "MIT",
   "machineName": "H5P.GuessTheAnswer",
@@ -20,6 +21,13 @@
   "preloadedJs": [
     {
       "path": "guess-the-answer.js"
+    }
+  ],
+  "preloadedDependencies": [
+    {
+      "machineName": "FontAwesome",
+      "majorVersion": 4,
+      "minorVersion": 3
     }
   ]
 }

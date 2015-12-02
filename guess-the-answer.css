@@ -1,12 +1,12 @@
 .h5p-guess-answer{
   background-color: #FFF;
   text-align: center;
+  color: #555;
 }
 .h5p-guess-answer-title {
   text-align: center;
   margin: 0;
   font-size: 1.25em;
-  /*border-bottom: 0.1em solid #ddd;*/
 }
 .h5p-guess-answer-title p {
   margin: 0.5em auto;
@@ -17,25 +17,26 @@
   line-height: 0;
 }
 
+.h5p-guess-answer-image-container > img {
+  max-width: 100%;
+  height: auto;
+}
+
 .h5p-guess-answer-solution-container {
-  cursor: pointer;
   cursor: pointer;
   margin: auto;
   background-color: #1a73d9;
   color: #FFF;
   border-radius: 2em;
-  padding: 0.5em 0;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  flex-direction: row;
+  padding: 0.5em 1em;
+  display: inline-block;
   margin-bottom: 1em;
+  box-sizing: border-box;
   max-width: 90%;
 }
 
 .h5p-guess-answer-solution-container:hover,
-.h5p-guess-answer-solution-container:focus
-{
+.h5p-guess-answer-solution-container:focus {
   background: #1356a3;
 }
 
@@ -54,6 +55,7 @@
 
 .h5p-guess-answer-solution-container.h5p-guess-answer-showing-solution {
   cursor: auto;
+  padding: 0.5em 0;
   background-color: transparent;
   color: #1a73d9;
   font-weight: bold;
