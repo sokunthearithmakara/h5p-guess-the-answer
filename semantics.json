@@ -1,7 +1,7 @@
 [
   {
     "label": "Task description",
-    "importance": "high",
+    "importance": "medium",
     "name": "taskDescription",
     "type": "text",
     "widget": "html",
@@ -22,7 +22,7 @@
   },
   {
     "label": "Solution image",
-    "importance": "medium",
+    "importance": "high",
     "name": "solutionImage",
     "type": "image",
     "description": "Users will guess the solution from this picture.",
