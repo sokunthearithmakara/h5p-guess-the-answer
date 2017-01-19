@@ -1,6 +1,7 @@
 [
   {
     "label": "Task description",
+    "importance": "medium",
     "name": "taskDescription",
     "type": "text",
     "widget": "html",
@@ -21,6 +22,7 @@
   },
   {
     "label": "Solution image",
+    "importance": "high",
     "name": "solutionImage",
     "type": "image",
     "description": "Users will guess the solution from this picture.",
@@ -28,6 +30,7 @@
   },
   {
     "label": "Descriptive solution label",
+    "importance": "low",
     "name": "solutionLabel",
     "type": "text",
     "widget": "textarea",
@@ -37,6 +40,7 @@
   },
   {
     "label": "Solution text",
+    "importance": "high",
     "name": "solutionText",
     "type": "text",
     "widget": "textarea",
