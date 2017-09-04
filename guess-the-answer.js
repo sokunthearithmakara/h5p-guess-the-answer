@@ -58,39 +58,42 @@ H5P.GuessTheAnswer = (function () {
   }
 
   /**
-   * Replacement for jQuery.extend, or Object.assign
+   * Simple recusive function the helps set default values without
+   * destroying object references.
    *
    * Note: Can be removed if 'babel-plugin-transform-object-assign' is added
    *
-   * @param {object} target
-   * @param {object} source
-   * @return {object}
+   * @param {object} params values
+   * @param {object} values default values
    */
-  function extend(target, source) {
-    for(var key in source) {
-      if(source.hasOwnProperty(key)) {
-        target[key] = source[key];
+  var setDefaults = function (params, values) {
+    for (var prop in values) {
+      if (values.hasOwnProperty(prop)) {
+        if (params[prop] === undefined) {
+          params[prop] = values[prop];
+        }
+        else if (params[prop] instanceof Object && !(params[prop] instanceof Array)) {
+          setDefaults(params[prop], values[prop]);
+        }
       }
     }
-
-    return target;
-  }
+  };
 
   /**
    * Initialize module.
    *
    * @class
    * @alias H5P.GuessTheAnswer
-   * @param {object} config
+   * @param {object} params
    * @param {number} contentId
    */
-  function C(config, contentId) {
+  function C(params, contentId) {
     // Set default behavior.
-    var params = extend({
+    setDefaults(params, {
       taskDescription: '',
       solutionLabel: 'Click to see the answer.',
       solutionText: ''
-    }, config);
+    });
 
     // get element references
     var rootElement = this.rootElement = this.createRootElement(params);
