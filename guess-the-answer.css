@@ -4,10 +4,6 @@
   color: #555;
 }
 
-.h5p-guess-answer .hidden {
-  display: none;
-}
-
 .h5p-guess-answer-title {
   text-align: center;
   margin: 1em 1em 0;
@@ -29,6 +25,8 @@
 }
 
 .h5p-guess-answer .show-solution-button {
+  display: block;
+  line-height: 1em;
   cursor: pointer;
   font-size: 16px;
   border: none;
@@ -62,10 +60,16 @@
 .h5p-guess-answer .solution-text {
   cursor: auto;
   padding: 0.5em 0;
+  margin: 1em;
+  line-height: 1em;
   color: #1a73d9;
   font-weight: bold;
 }
 
 .h5p-guess-answer .solution-text:focus {
   outline: none;
+}
+
+.h5p-guess-answer .hidden {
+  display: none;
 }
