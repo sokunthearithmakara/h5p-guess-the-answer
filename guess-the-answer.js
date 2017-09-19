@@ -11,14 +11,14 @@ H5P.GuessTheAnswer = (function () {
    * @param {object} siblingInstance
    * @return {Function}
    */
-  function triggerResize (siblingInstance) {
-    return function(event) {
+  function triggerResize(siblingInstance) {
+    return function (event) {
       var fromSibling = event.data && (event.data.fromSibling === true);
 
-      if(!fromSibling) {
+      if (!fromSibling) {
         siblingInstance.trigger('resize', { fromSibling: true });
       }
-    }
+    };
   }
 
   /**
@@ -29,7 +29,7 @@ H5P.GuessTheAnswer = (function () {
    * @param {object} instance
    * @return {Element}
    */
-  function createMediaElement (params, contentId, instance) {
+  function createMediaElement(params, contentId, instance) {
     var element = document.createElement('div');
     var mediaInstance = H5P.newRunnable(params, contentId, H5P.jQuery(element), true);
 
@@ -46,7 +46,7 @@ H5P.GuessTheAnswer = (function () {
    * @param {Element} imageElement
    * @param {object} instance
    */
-  function initImage (imageElement, instance) {
+  function initImage(imageElement, instance) {
     // if has image, resize on load
     if (imageElement) {
       imageElement.style.width = null;
