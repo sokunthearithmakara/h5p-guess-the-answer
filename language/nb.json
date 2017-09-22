@@ -7,10 +7,13 @@
       "description": "Beskriv hva brukeren må gjøre for å løse oppgaven."
     },
     {
-      "englishLabel": "Solution image",
-      "label": "Bilde",
-      "englishDescription": "Users will guess the solution from this picture.",
-      "description": "Brukeren vil gjette løsningen ut fra dette bildet."
+      "label": "Media",
+      "fields": [
+        {
+          "label": "Type",
+          "description": "Optional media to display above the question."
+        }
+      ]
     },
     {
       "englishLabel": "Descriptive solution label",
