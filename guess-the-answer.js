@@ -2,28 +2,137 @@ var H5P = H5P || {};
 
 /**
  * Guess the answer module
- * @external {jQuery} $ H5P.jQuery
  */
-H5P.GuessTheAnswer = (function ($) {
+H5P.GuessTheAnswer = (function () {
+  /**
+   * Triggers 'resize' event on an instance. Stops infinite loops
+   * by not re-triggering the event, when it comes from a sibling
+   *
+   * @param {object} siblingInstance
+   * @return {Function}
+   */
+  function triggerResize(siblingInstance) {
+    return function (event) {
+      var fromSibling = event.data && (event.data.fromSibling === true);
+
+      if (!fromSibling) {
+        siblingInstance.trigger('resize', { fromSibling: true });
+      }
+    };
+  }
+
+  /**
+   * Create the media element
+   *
+   * @param {object} params
+   * @param {number} contentId
+   * @param {object} instance
+   * @return {Element}
+   */
+  function createMediaElement(params, contentId, instance) {
+    var element = document.createElement('div');
+    var mediaInstance = H5P.newRunnable(params, contentId, H5P.jQuery(element), true);
+
+    // Resize this instance, on video resize, and vise versa
+    instance.on('resize', triggerResize(mediaInstance));
+    mediaInstance.on('resize', triggerResize(instance));
+
+    return element;
+  }
+
+  /**
+   * Initializes the image
+   *
+   * @param {Element} imageElement
+   * @param {object} instance
+   */
+  function initImage(imageElement, instance) {
+    // if has image, resize on load
+    if (imageElement) {
+      imageElement.style.width = null;
+      imageElement.style.height = null;
+      imageElement.addEventListener('load', function () {
+        instance.trigger('resize');
+      }, false);
+    }
+  }
+
+  /**
+   * Simple recusive function the helps set default values without
+   * destroying object references.
+   *
+   * Note: Can be removed if 'babel-plugin-transform-object-assign' is added
+   *
+   * @param {object} params values
+   * @param {object} values default values
+   */
+  var setDefaults = function (params, values) {
+    for (var prop in values) {
+      if (values.hasOwnProperty(prop)) {
+        if (params[prop] === undefined) {
+          params[prop] = values[prop];
+        }
+        else if (params[prop] instanceof Object && !(params[prop] instanceof Array)) {
+          setDefaults(params[prop], values[prop]);
+        }
+      }
+    }
+  };
 
   /**
    * Initialize module.
-   * @param {Object} params Behavior settings
-   * @param {Number} id Content identification
-   * @returns {Object} C Counter instance
+   *
+   * @class
+   * @alias H5P.GuessTheAnswer
+   * @param {object} params
+   * @param {number} contentId
    */
-  function C(params, id) {
-    this.$ = $(this);
-    this.id = id;
-
+  function C(params, contentId) {
     // Set default behavior.
-    this.params = $.extend({}, {
+    setDefaults(params, {
       taskDescription: '',
       solutionLabel: 'Click to see the answer.',
-      solutionImage: null,
       solutionText: ''
-    }, params);
+    });
+
+    // get element references
+    var rootElement = this.rootElement = this.createRootElement(params);
+    var mediaElement = rootElement.querySelector('.media');
+    var buttonElement = rootElement.querySelector('.show-solution-button');
+    var solutionElement = rootElement.querySelector('.solution-text');
+
+    // add media
+    if (params.media) {
+      var el = createMediaElement(params.media, contentId, this);
+      initImage(el.querySelector('img'), this);
+      mediaElement.appendChild(el);
+    }
+
+    // add show solution text on button click
+    buttonElement.addEventListener('click', function() {
+      buttonElement.classList.add('hidden');
+      solutionElement.classList.remove('hidden');
+      solutionElement.focus();
+    });
   }
+
+  /**
+   * Creates the root element with the markup for the content type
+   *
+   * @param {object} params
+   * @return {Element}
+   */
+  C.prototype.createRootElement = function (params) {
+    var element = document.createElement('div');
+
+    element.classList.add('h5p-guess-answer');
+    element.innerHTML = '<div class="h5p-guess-answer-title">' + params.taskDescription +'</div>' +
+      '<div class="media"></div>' +
+      '<button class="show-solution-button">' + params.solutionLabel + '</button>' +
+      '<div class="solution-text hidden" tabindex="-1">' + params.solutionText + '</div>';
+
+    return element;
+  };
 
   /**
    * Attach function called by H5P framework to insert H5P content into page.
@@ -32,73 +141,8 @@ H5P.GuessTheAnswer = (function ($) {
    */
   C.prototype.attach = function ($container) {
     this.setActivityStarted();
-    this.$inner = $container.addClass('h5p-guess-answer')
-      .html('<div></div>')
-      .children();
-
-    //Attach task description, if provided.
-    this.addTaskDescriptionTo(this.$inner);
-
-    //Attach image, if provided.
-    this.addImageTo(this.$inner);
-
-    //Attach solution container.
-    this.addSolutionContainerTo(this.$inner);
-  };
-
-  /**
-   * Adds a task description if provided in semantics, to the provided container.
-   *
-   * @param {jQuery} $container The container which will be appended to.
-   */
-  C.prototype.addTaskDescriptionTo = function ($container) {
-    if (this.params.taskDescription) {
-      $('<div/>', {
-        'class': 'h5p-guess-answer-title',
-        html: this.params.taskDescription
-      }).appendTo($container);
-    }
-  };
-
-  /**
-   * Adds image to the provided container.
-   *
-   * @param {jQuery} $container The container which will be appended to.
-   */
-  C.prototype.addImageTo = function ($container) {
-    var self = this;
-
-    if (self.params.solutionImage && self.params.solutionImage.path) {
-      var $imageHolder = $('<div/>', {
-        'class': 'h5p-guess-answer-image-container'
-      }).append($('<img/>', {
-        'class': 'h5p-guess-answer-image',
-        src: H5P.getPath(self.params.solutionImage.path, self.id),
-        load: function () {
-          self.trigger('resize');
-        }
-      }));
-
-      $imageHolder.appendTo($container);
-    }
-  };
-
-  /**
-   * Adds a solution container to the provided container.
-   *
-   * @param {jQuery} $container The container which will be appended to.
-   */
-  C.prototype.addSolutionContainerTo = function ($container) {
-    var self = this;
-
-    self.$solutionContainer = $('<div/>', {
-      'class': 'h5p-guess-answer-solution-container',
-      html: this.params.solutionLabel
-    }).click(function () {
-      $(this).addClass('h5p-guess-answer-showing-solution').html(self.params.solutionText);
-      self.trigger('resize');
-    }).appendTo($container);
+    $container.get(0).appendChild(this.rootElement);
   };
 
   return C;
-})(H5P.jQuery);
+})();

@@ -7,10 +7,13 @@
       "description": "Opišite kako će korinik riješiti zadatak."
     },
     {
-      "englishLabel": "Solution image",
-      "label": "Slika rješenja",
-      "englishDescription": "Users will guess the solution from this picture.",
-      "description": "Korisnici će pretpostaviti rješenje od ove slike."
+      "label": "Media",
+      "fields": [
+        {
+          "label": "Type",
+          "description": "Optional media to display above the question."
+        }
+      ]
     },
     {
       "englishLabel": "Descriptive solution label",
