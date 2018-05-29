@@ -1,19 +1,22 @@
 {
-	"semantics": [{
-		"label": "Aufgabenbeschreibung",
-		"description": "Beschreibung darüber, wie der Benutzer die Aufgabe lösen sollte.",
-		"tags": [
-
-		]
-	}, {
-		"label": "Lösungsbild",
-		"description": "Der Benutzer wird die Lösung mithilfe dieses Bildes erraten."
-	}, {
-		"label": "Label der beschreibenden Lösung",
-		"default": "Klicken, um Antwort zu sehen.",
-		"description": "Klickbarer Textbereich, in dem die Lösung erscheinen wird."
-	}, {
-		"label": "Lösungstext",
-		"description": "Die Lösung des Bildes."
-	}]
+  "semantics": [
+    {
+      "label": "Aufgabenbeschreibung",
+      "description": "Beschreibung darüber, wie der Benutzer die Aufgabe lösen sollte.",
+      "tags": []
+    },
+    {
+      "label": "Lösungsbild",
+      "description": "Der Benutzer wird die Lösung mithilfe dieses Bildes erraten."
+    },
+    {
+      "label": "Label der beschreibenden Lösung",
+      "default": "Klicken, um Antwort zu sehen.",
+      "description": "Klickbarer Textbereich, in dem die Lösung erscheinen wird."
+    },
+    {
+      "label": "Lösungstext",
+      "description": "Die Lösung des Bildes."
+    }
+  ]
 }
