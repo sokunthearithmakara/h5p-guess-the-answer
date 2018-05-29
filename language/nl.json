@@ -1,9 +1,7 @@
 {
   "semantics": [
     {
-      "englishLabel": "Task description",
       "label": "Taakomschrijving",
-      "englishDescription": "Describe how the user should solve the task.",
       "description": "Beschrijf hoe de gebruiker de taak dient op te lossen."
     },
     {
@@ -16,17 +14,12 @@
       ]
     },
     {
-      "englishLabel": "Descriptive solution label",
       "label": "Label voor de beschrijving van de oplossing",
-      "englishDefault": "Click to see the answer.",
       "default": "Klik om het antwoord te zien",
-      "englishDescription": "Clickable text area where the solution will be displayed.",
       "description": "Het klikbare tekstgebied waar de oplossing zal worden getoond."
     },
     {
-      "englishLabel": "Solution text",
       "label": "Tekst voor de oplossing",
-      "englishDescription": "The solution for the picture.",
       "description": "De oplossing voor de afbeelding."
     }
   ]

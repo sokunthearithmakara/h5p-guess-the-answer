@@ -1,9 +1,7 @@
 {
   "semantics": [
     {
-      "englishLabel": "Task description",
       "label": "Opis zadatka",
-      "englishDescription": "Describe how the user should solve the task.",
       "description": "Opišite kako će korinik riješiti zadatak."
     },
     {
@@ -16,17 +14,12 @@
       ]
     },
     {
-      "englishLabel": "Descriptive solution label",
       "label": "Opisna oznaka za rješenje",
-      "englishDefault": "Click to see the answer.",
       "default": "Kliknite da vitite odgovor",
-      "englishDescription": "Clickable text area where the solution will be displayed.",
       "description": "Tekstualno područje za klikanje je ono područje gdje će biti prikazano rješenje."
     },
     {
-      "englishLabel": "Solution text",
       "label": "Tekst rješenja",
-      "englishDescription": "The solution for the picture.",
       "description": "Rješenje za sliku."
     }
   ]

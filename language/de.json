@@ -2,12 +2,16 @@
   "semantics": [
     {
       "label": "Aufgabenbeschreibung",
-      "description": "Beschreibung darüber, wie der Benutzer die Aufgabe lösen sollte.",
-      "tags": []
+      "description": "Beschreibung darüber, wie der Benutzer die Aufgabe lösen sollte."
     },
     {
       "label": "Lösungsbild",
-      "description": "Der Benutzer wird die Lösung mithilfe dieses Bildes erraten."
+      "fields": [
+        {
+          "label": "Type",
+          "description": "Optional media to display above the question."
+        }
+      ]
     },
     {
       "label": "Label der beschreibenden Lösung",
