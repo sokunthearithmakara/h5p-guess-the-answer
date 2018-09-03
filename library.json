@@ -2,12 +2,12 @@
   "title": "Guess the Answer",
   "description": "Set up a task where the user will just click to see the answer. No input.",
   "majorVersion": 1,
-  "minorVersion": 3,
-  "patchVersion": 3,
+  "minorVersion": 4,
+  "patchVersion": 0,
   "runnable": 1,
   "coreApi": {
     "majorVersion": 1,
-    "minorVersion": 6
+    "minorVersion": 19
   },
   "embedTypes": [
     "iframe"
