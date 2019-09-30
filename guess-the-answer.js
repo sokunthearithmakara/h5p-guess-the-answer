@@ -129,7 +129,7 @@ H5P.GuessTheAnswer = (function () {
     element.innerHTML = '<div class="h5p-guess-answer-title">' + params.taskDescription +'</div>' +
       '<div class="media"></div>' +
       '<button class="show-solution-button">' + params.solutionLabel + '</button>' +
-      '<div class="solution-text hidden" tabindex="-1">' + params.solutionText + '</div>';
+      '<div class="solution-text hidden" role="alert" tabindex="-1">' + params.solutionText + '</div>';
 
     return element;
   };
