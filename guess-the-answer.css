@@ -69,7 +69,12 @@
 .h5p-guess-answer .solution-text:focus {
   outline: none;
 }
-
+.h5p-guess-answer .empty-text-for-nvda {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
 .h5p-guess-answer .hidden {
   display: none;
 }
