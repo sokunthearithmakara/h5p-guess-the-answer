@@ -9,7 +9,7 @@
       "fields": [
         {
           "label": "Type",
-          "description": "Optional media to display above the question."
+          "description": "Valgfrit media-element som vises over spørsmålet."
         }
       ]
     },
