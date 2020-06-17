@@ -1,26 +1,26 @@
 {
   "semantics": [
     {
-      "label": "Beskrivelse av oppgaven",
-      "description": "Beskriv hva brukeren må gjøre for å løse oppgaven."
+      "label": "Beskriving av oppgåva",
+      "description": "Beskriv kva brukaren må gjere for å løyse oppgåva."
     },
     {
       "label": "Media",
       "fields": [
         {
           "label": "Type",
-          "description": "Valgfrit media-element som vises over spørsmålet."
+          "description": "Valfritt media-element som blir vist over spørsmålet."
         }
       ]
     },
     {
-      "label": "Etikett for løsningsknapp",
-      "default": "Klikk for å se svar",
-      "description": "Knapp som vil vise løsningen."
+      "label": "Etikett for løsyingsknapp",
+      "default": "Klikk for å sjå svar",
+      "description": "Knapp som vil vise løsyinga."
     },
     {
-      "label": "Løsningstekst",
-      "description": "Løsningen på oppgaven gitt av beskrivelse og bildet."
+      "label": "Løysingstekst",
+      "description": "Løysinga på oppgåva gitt av beskriving og biletet."
     }
   ]
 }
